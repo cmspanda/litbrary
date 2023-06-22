@@ -1,0 +1,16 @@
+<head>
+    <title>Litbrary</title>
+    
+</head>
+<body>
+    <my-element></my-element>
+    <simple-greeting name="Doug" color="red"></simple-greeting>
+    <button onclick="changeColor()">Change Color</button>
+    <script src="./bundle.js"></script>
+    <script>
+        const changeColor = (() => {
+            let greeting = document.getElementsByTagName("simple-greeting")[0];
+            greeting.setAttribute("color", "green");
+        })
+    </script>
+</body>

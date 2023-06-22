@@ -1,0 +1,24 @@
+{
+  "name": "litbrary",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A common library of lit components to be used in web projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx rollup -c",
+    "local": "yarn build && staticthis ."
+  },
+  "keywords": [
+    "lit"
+  ],
+  "author": "Douglas Ross",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "^2.7.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "rollup": "^3.25.1"
+  }
+}
