@@ -9,14 +9,27 @@ export default class Showcase extends LitElement {
 
     static styles = css`
         :host {
-            font-family: sans-serif;
+            
+            /* Color processing: specific styling -> theme color -> default color */
+            --showcase-font-family: var(--font-family, sans-serif);
+            --showcase-background: var(--primary-background, none);
+            --showcase-outer-border-color: var(--primary-border-color, #999);
+            --showcase-inner-border-color: var(--accent-border-color, #999);
+            --showcase-text-color: var(--primary-text-color, rgb(150,150,150));
+            --showcase-heading-color: var(--primary-heading-color, var(--showcase-text-color, rgb(150,150,150)));
+            --showcase-description-background: var(--accent-background, #444);
+            
+            font-family: var(--showcase-font-family);
+            color: var(--showcase-text-color);
         }
+
+        /* TODO: Lookup dark mode handling */
 
         div.container {
             display: flex;
             flex-direction: column;
             min-height: 10vh;
-            border: thin solid #999;
+            border: thin solid var(--showcase-outer-border-color);
             margin: 1rem;
             padding: 1rem;
             border-radius: 4px;
@@ -25,29 +38,29 @@ export default class Showcase extends LitElement {
         h4 {
             font-weight: bold;
             font-size: 0.7em;
-            margin: 0.25rem;
-            color: rgb(150,150,150);
+            line-height: 2em;
+            margin: 0;
+            color: var(--showcase-heading-color);
         }
 
         h2 { 
             font-weight: bold;
             margin: 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid black;
+            color: var(--showcase-heading-color);
         }
 
         .description {
-            color: rgb(51, 51, 51);
             padding: 1rem;
-            background-color: #eee;
-            font-family: sans-serif;
-            border-top: 2px solid black;
+            background: var(--showcase-description-background);
         }
 
         .demo {
             padding: 1rem 0;
             min-height: 4rem;
             background: none;
+            border-top: 2px solid var(--showcase-inner-border-color);
+            border-bottom: 2px solid var(--showcase-inner-border-color);
+            margin: 1rem 0;
         }
     `;
 
