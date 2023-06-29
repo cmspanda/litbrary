@@ -1,0 +1,57 @@
+<head>
+    <title>Litbrary</title>
+    <style>
+        :root {
+            background-color: #222;
+        }
+
+        .themed {
+            --primary-border-color: purple;
+            --accent-border-color: aliceblue;
+            --primary-text-color: red;
+            --primary-heading-color: pink;
+            --font-family: sans-serif; 
+        }
+
+        .showcase-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .teaser-container { 
+            background-color:red;
+            padding: 5em;
+            margin: 5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <lb-navigation></lb-navigation>
+    </header>
+    <main>
+        <h1>This will be the first page</h1>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./bundle.js"></script>
+    <script>
+        /* Add items to menu at end of page load */
+        let testMenu = [{
+            text: "Home",
+            link: "#",
+            children: []
+        },{
+            text: "Documentation",
+            link: "#",
+            children: []
+        },{
+            text: "Using",
+            link: "#",
+            children: []
+        }];
+
+        document.querySelector('lb-navigation').setAttribute("items", JSON.stringify(testMenu));
+    </script>
+</body>
