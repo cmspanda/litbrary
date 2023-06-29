@@ -1,16 +1,120 @@
 <head>
     <title>Litbrary</title>
-    
+    <style>
+        :root {
+            background-color: #222;
+            /* --default-color: red; */
+            /* --alt-color: var(--default-color, green); */
+            
+            /* 
+            
+            */
+
+            /* --showcase-inner-border-color: orange; */
+        }
+
+        .themed {
+            --primary-border-color: purple;
+            --accent-border-color: aliceblue;
+            --primary-text-color: red;
+            --primary-heading-color: pink;
+            --font-family: sans-serif; 
+        }
+
+        .showcase-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .teaser-container { 
+            background-color:red;
+            padding: 5em;
+            margin: 5em;
+        }
+    </style>
 </head>
 <body>
-    <my-element></my-element>
-    <simple-greeting name="Doug" color="red"></simple-greeting>
-    <button onclick="changeColor()">Change Color</button>
+    <div class="showcase-cards">
+        <lb-showcase title="Teaser with image specified" description="teaser component that does not have 'usePicture' set">
+            <lb-teaser 
+                title="My First Teaser" 
+                description="This would be the informational text"
+                image="assets/sample/Info_03.png"
+                alt=""
+                background="background-color: rgba(100,100,100,0.5);" />
+        </lb-showcase>
+        <lb-showcase title="Teaser with background-only" description="teaser component not using a picture, background only">
+            <lb-teaser 
+                title="My Second Teaser" 
+                description="This would be the informational text"
+                alt=""
+                headingLevel="3"
+                background="background-color: rgba(150,100,150,0.5);" />
+        </lb-showcase>
+        <lb-showcase title="Teaser with Source Set" description="teaser component not using a picture, background only">
+            <lb-teaser 
+                title="My Third Teaser" 
+                description="This would be the informational text"
+                alt=""
+                headingLevel="4"
+                background="background-color: rgba(150,100,150,0.5);">
+                <picture>
+                    <source style="width:100%" media="(orientation:portrait)" srcset="assets/sample/Info_10.jpg">
+                    <img style="width:100%" src="assets/sample/Info_03.png" />
+                </picture>
+            </lb-teaser>
+        </lb-showcase>
+        <lb-showcase class="themed" title="Navigation" description="Basic inline navigation for use in headers, page menus">
+            <lb-navigation></lb-navigation>
+        </lb-showcase>
+        <lb-showcase title="Buttons!" description="This is a great button, don't you think?">
+            <lb-button event="say-goodbye" action="click" />
+        </lb-showcase>
+        <lb-showcase title="My Element" description="Another example component from the LIT tutorial">
+            <my-element></my-element>
+        </lb-showcase>
+    </div>
     <script src="./bundle.js"></script>
     <script>
-        const changeColor = (() => {
-            let greeting = document.getElementsByTagName("simple-greeting")[0];
-            greeting.setAttribute("color", "green");
-        })
+        /* Add items to menu at end of page load */
+        let testMenu = [{
+            text: "Apple",
+            link: "#",
+            children: []
+        },{
+            text: "Orange",
+            link: "#",
+            children: [
+                {
+                    text: "Lion",
+                    link: "#",
+                    children: []
+                },
+                {
+                    text: "Tigers",
+                    link: "#",
+                    children: []
+                },
+                {
+                    text: "Oh My",
+                    link: "#",
+                    children: []
+                }
+            ]
+        },{
+            text: "Banana",
+            link: "#",
+            children: []
+        }];
+
+        document.querySelector('lb-navigation').setAttribute("items", JSON.stringify(testMenu));
+
+        /* Testing function passing */
+        document.addEventListener('lb-button-clicked', ((e) => console.log(e.detail)));
+        document.addEventListener('lb-button-pressed', ((e) => console.log(e.detail)));
+        document.addEventListener('say-goodbye', ((e) => {
+            console.log("Adios!");
+            console.log(e.detail)
+        }));
     </script>
 </body>
